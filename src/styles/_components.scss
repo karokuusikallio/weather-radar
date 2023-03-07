@@ -1,0 +1,90 @@
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: $padM;
+  box-shadow: $mainShadow;
+  background: white;
+}
+
+.dropdown {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  select {
+    margin: $marM;
+    padding: $padM;
+  }
+}
+
+// City Card
+.cityCard {
+  margin: $marM;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 28rem;
+
+  .cityCardBlock {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background: white;
+    box-shadow: $mainShadow;
+    padding: $padM;
+    z-index: 1000;
+  }
+
+  .forecastBlock {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background: $greyBg;
+    padding-top: $padM;
+  }
+
+  .greyBg {
+    background: $greyBg !important;
+  }
+
+  .cityCardColumn {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 8rem;
+  }
+
+  .temperatureInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+}
+
+// Forecast Card
+.forecastCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.infoOnWhite {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: white;
+  box-shadow: $mainShadow;
+  padding: $padS;
+  text-align: center;
+}
+
+.infoOnBlue {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: $blueBg;
+  box-shadow: $mainShadow;
+  padding: $padS;
+  text-align: center;
+}

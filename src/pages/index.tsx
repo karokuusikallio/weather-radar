@@ -14,11 +14,13 @@ export default function Home() {
       </header>
       <main>
         <CityPicker />
-        <CityCard />
-        <CityCard />
-        <CityCard />
-        <CityCard />
-        <CityCard />
+        <div className="cityCardView">
+          <CityCard />
+          <CityCard />
+          <CityCard />
+          <CityCard />
+          <CityCard />
+        </div>
       </main>
     </>
   );
