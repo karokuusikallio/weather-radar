@@ -1,6 +1,7 @@
 import Head from "next/head";
 import CityCard from "@/components/CityCard";
 import CityPicker from "@/components/CityPicker";
+import { coordinates } from "../../data/coordinates";
 
 export default function Home() {
   return (
@@ -15,11 +16,14 @@ export default function Home() {
       <main>
         <CityPicker />
         <div className="cityCardView">
-          <CityCard />
-          <CityCard />
-          <CityCard />
-          <CityCard />
-          <CityCard />
+          {coordinates.map((city, index) => (
+            <CityCard
+              city={city.name}
+              lat={city.lat}
+              lon={city.lon}
+              key={index}
+            />
+          ))}
         </div>
       </main>
     </>

@@ -1,40 +1,89 @@
 import ForecastCard from "./ForecastCard";
+import useCurrentWeather from "../../hooks/useCurrentWeather";
+import useForecast from "../../hooks/useForecast";
+import Image from "next/image";
 
-export default function CityCard() {
-  return (
-    <div className="cityCard">
-      <div className="cityCardBlock">
-        <div className="cityCardColumn">
-          <div>
-            <h2>Espoo</h2>
-            <p>Scattered clouds</p>
-          </div>
-          <div>
-            <b>May 2nd</b>
-            <p>11:53</p>
-          </div>
-        </div>
-        <div className="cityCardColumn alignRight">
-          <div className="temperatureInfo">
-            <i>Cloud Icon</i>
-            <p>
-              <span className="highlight">0</span>°C
-            </p>
-          </div>
-          <div>
-            <p>Wind: 5.1m/s</p>
-            <p>Humidity: 86%</p>
-            <p>Precipitation (3h): 5mm</p>
-          </div>
-        </div>
-      </div>
-      <div className="forecastBlock">
-        <ForecastCard />
-        <ForecastCard />
-        <ForecastCard />
-        <ForecastCard />
-        <ForecastCard />
-      </div>
-    </div>
+import { CurrentWeatherData } from "../../types/types";
+
+export default function CityCard({ city, lat, lon }) {
+  const forecastData = useForecast(lat, lon);
+  const currentWeatherData: CurrentWeatherData | null = useCurrentWeather(
+    lat,
+    lon
   );
+
+  if (currentWeatherData) {
+    const monthNames = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    let month = monthNames[new Date(currentWeatherData.time * 1000).getMonth()];
+    const day = new Date(currentWeatherData.time * 1000).getDay();
+
+    const hour = new Date(currentWeatherData.time * 1000).getHours();
+    const minute = new Date(currentWeatherData.time * 1000).getMinutes();
+
+    return (
+      <div className="cityCard">
+        <div className="cityCardBlock">
+          <div className="cityCardColumn">
+            <div>
+              <h2>{city}</h2>
+              <p>{currentWeatherData.description}</p>
+            </div>
+            <div>
+              <b>
+                {month} {day}
+              </b>
+              <p>
+                {hour}:{minute}
+              </p>
+            </div>
+          </div>
+          <div className="cityCardColumn alignRight">
+            <div className="temperatureInfo">
+              <Image
+                src={`https://openweathermap.org/img/wn/${currentWeatherData.icon}@2x.png`}
+                alt="weather icon"
+                height={60}
+                width={60}
+              />
+              <span className="highlight">
+                {Math.round(currentWeatherData.temperature)}
+              </span>
+              <span>°C</span>
+            </div>
+            <div>
+              <p>Wind: {Math.round(currentWeatherData.wind * 10) / 10}m/s</p>
+              <p>Humidity: {currentWeatherData.humidity}%</p>
+              {currentWeatherData.precipitation ? (
+                <p>Precipitation (3h): {currentWeatherData.precipitation}mm</p>
+              ) : (
+                <p>No precipitation</p>
+              )}
+            </div>
+          </div>
+        </div>
+        <div className="forecastBlock">
+          <ForecastCard />
+          <ForecastCard />
+          <ForecastCard />
+          <ForecastCard />
+          <ForecastCard />
+        </div>
+      </div>
+    );
+  }
+
+  return <p>Loading...</p>;
 }
