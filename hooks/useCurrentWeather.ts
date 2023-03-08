@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-import { CurrentWeatherData } from "../types/types";
+import { WeatherData } from "../types/types";
 
 export default function useCurrentWeather(
   lat: number,
   lon: number
-): CurrentWeatherData | null {
+): WeatherData | null {
   const [currentWeatherData, setCurrentWeatherData] =
-    useState<CurrentWeatherData | null>(null);
+    useState<WeatherData | null>(null);
 
   useEffect(() => {
     const getCurrentWeather = async () => {
@@ -27,7 +27,7 @@ export default function useCurrentWeather(
         ? data.rain["3h"]
         : null;
 
-      const weatherObject: CurrentWeatherData = {
+      const weatherObject: WeatherData = {
         time: data.dt,
         description: data.weather[0].description,
         wind: data.wind.speed,

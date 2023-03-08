@@ -1,4 +1,4 @@
-export interface CurrentWeatherData {
+export interface WeatherData {
   time: number;
   description: string;
   wind: number;

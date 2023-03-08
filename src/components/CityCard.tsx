@@ -1,9 +1,8 @@
-import ForecastCard from "./ForecastCard";
 import useCurrentWeather from "../../hooks/useCurrentWeather";
-import useForecast from "../../hooks/useForecast";
 import Image from "next/image";
 
-import { CurrentWeatherData } from "../../types/types";
+import ForecastData from "./ForecastData";
+import { WeatherData } from "../../types/types";
 
 interface CityCardProps {
   city: string;
@@ -12,11 +11,7 @@ interface CityCardProps {
 }
 
 export default function CityCard({ city, lat, lon }: CityCardProps) {
-  const forecastData = useForecast(lat, lon);
-  const currentWeatherData: CurrentWeatherData | null = useCurrentWeather(
-    lat,
-    lon
-  );
+  const currentWeatherData: WeatherData | null = useCurrentWeather(lat, lon);
 
   if (currentWeatherData) {
     const monthNames = [
@@ -36,8 +31,12 @@ export default function CityCard({ city, lat, lon }: CityCardProps) {
     let month = monthNames[new Date(currentWeatherData.time * 1000).getMonth()];
     const day = new Date(currentWeatherData.time * 1000).getDay();
 
-    const hour = new Date(currentWeatherData.time * 1000).getHours();
-    const minute = new Date(currentWeatherData.time * 1000).getMinutes();
+    const hour = (
+      "0" + new Date(currentWeatherData.time * 1000).getHours()
+    ).slice(-2);
+    const minute = (
+      "0" + new Date(currentWeatherData.time * 1000).getMinutes()
+    ).slice(-2);
 
     return (
       <div className="cityCard">
@@ -73,20 +72,17 @@ export default function CityCard({ city, lat, lon }: CityCardProps) {
               <p>Wind: {Math.round(currentWeatherData.wind * 10) / 10}m/s</p>
               <p>Humidity: {currentWeatherData.humidity}%</p>
               {currentWeatherData.precipitation ? (
-                <p>Precipitation (3h): {currentWeatherData.precipitation}mm</p>
+                <p>
+                  Precipitation (3h):
+                  {Math.round(currentWeatherData.precipitation * 10) / 10}mm
+                </p>
               ) : (
                 <p>No precipitation</p>
               )}
             </div>
           </div>
         </div>
-        <div className="forecastBlock">
-          <ForecastCard />
-          <ForecastCard />
-          <ForecastCard />
-          <ForecastCard />
-          <ForecastCard />
-        </div>
+        <ForecastData lat={lat} lon={lon} />
       </div>
     );
   }
