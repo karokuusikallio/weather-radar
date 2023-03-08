@@ -5,7 +5,13 @@ import Image from "next/image";
 
 import { CurrentWeatherData } from "../../types/types";
 
-export default function CityCard({ city, lat, lon }) {
+interface CityCardProps {
+  city: string;
+  lat: number;
+  lon: number;
+}
+
+export default function CityCard({ city, lat, lon }: CityCardProps) {
   const forecastData = useForecast(lat, lon);
   const currentWeatherData: CurrentWeatherData | null = useCurrentWeather(
     lat,

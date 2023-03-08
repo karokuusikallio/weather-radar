@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-export default function useForecast(lat, lon) {
+export default function useForecast(lat: number, lon: number) {
   const [forecastData, setForecastData] = useState(null);
 
   useEffect(() => {
@@ -15,7 +15,7 @@ export default function useForecast(lat, lon) {
     };
 
     getForecast();
-  }, []);
+  }, [lat, lon]);
 
   return forecastData;
 }

@@ -41,7 +41,7 @@ export default function useCurrentWeather(
     };
 
     getCurrentWeather();
-  }, []);
+  }, [lat, lon]);
 
   return currentWeatherData;
 }
