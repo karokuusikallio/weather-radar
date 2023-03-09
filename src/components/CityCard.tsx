@@ -43,7 +43,7 @@ export default function CityCard({ city, lat, lon }: CityCardProps) {
         <div className="cityCardBlock">
           <div className="cityCardColumn">
             <div>
-              <h2>{city}</h2>
+              <h2 id={city}>{city}</h2>
               <p>{currentWeatherData.description}</p>
             </div>
             <div>

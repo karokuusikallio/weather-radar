@@ -11,6 +11,7 @@ export default function CityPicker(props: CityPickerProps) {
       <select
         value={props.chosenCity}
         onChange={({ target }) => props.handleChange(target.value)}
+        id="cityPicker"
       >
         <option value={"All cities"}>All cities</option>
         {coordinates.map((city, index) => {
