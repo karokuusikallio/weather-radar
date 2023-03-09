@@ -2,18 +2,30 @@ import useCurrentWeather from "../../hooks/useCurrentWeather";
 import Image from "next/image";
 
 import ForecastData from "./ForecastData";
-import { WeatherData } from "../../types/types";
+import { LoadingStates, WeatherData } from "../../types/types";
+import { useEffect } from "react";
 
 interface CityCardProps {
   city: string;
   lat: number;
   lon: number;
+  handleLoading: (loading: LoadingStates) => void;
 }
 
-export default function CityCard({ city, lat, lon }: CityCardProps) {
-  const currentWeatherData: WeatherData | null = useCurrentWeather(lat, lon);
+export default function CityCard({
+  city,
+  lat,
+  lon,
+  handleLoading,
+}: CityCardProps) {
+  const [currentWeatherData, loading]: [WeatherData | null, LoadingStates] =
+    useCurrentWeather(lat, lon);
 
-  if (currentWeatherData) {
+  useEffect(() => {
+    handleLoading(loading);
+  }, [loading, handleLoading]);
+
+  if (loading === LoadingStates.finished && currentWeatherData) {
     const monthNames = [
       "January",
       "February",
@@ -29,7 +41,7 @@ export default function CityCard({ city, lat, lon }: CityCardProps) {
       "December",
     ];
     let month = monthNames[new Date(currentWeatherData.time * 1000).getMonth()];
-    const day = new Date(currentWeatherData.time * 1000).getDay();
+    const day = new Date(currentWeatherData.time * 1000).getDate();
 
     const hour = (
       "0" + new Date(currentWeatherData.time * 1000).getHours()
@@ -86,5 +98,9 @@ export default function CityCard({ city, lat, lon }: CityCardProps) {
     );
   }
 
-  return <p>No weather data.</p>;
+  if (loading === LoadingStates.finished) {
+    return <p>No weather data.</p>;
+  }
+
+  return null;
 }

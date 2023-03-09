@@ -15,3 +15,9 @@ export enum PickerOptions {
   Kuopio = "Kuopio",
   All = "All Cities",
 }
+
+export enum LoadingStates {
+  idle,
+  loading,
+  finished,
+}

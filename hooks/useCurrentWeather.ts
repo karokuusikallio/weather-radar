@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-import { WeatherData } from "../types/types";
+import { WeatherData, LoadingStates } from "../types/types";
 
 export default function useCurrentWeather(
   lat: number,
   lon: number
-): WeatherData | null {
+): [WeatherData | null, LoadingStates] {
   const [currentWeatherData, setCurrentWeatherData] =
     useState<WeatherData | null>(null);
+  const [loading, setLoading] = useState<LoadingStates>(LoadingStates.idle);
 
   useEffect(() => {
     const getCurrentWeather = async () => {
+      setLoading(LoadingStates.loading);
       try {
         const { data } = await axios.get(
           `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${process.env.NEXT_PUBLIC_OPEN_WEATHER_KEY}&units=metric`
@@ -45,7 +47,8 @@ export default function useCurrentWeather(
     };
 
     getCurrentWeather();
+    setLoading(LoadingStates.finished);
   }, [lat, lon]);
 
-  return currentWeatherData;
+  return [currentWeatherData, loading];
 }
