@@ -20,3 +20,6 @@ export const coordinates = [
     lon: 23.7871,
   },
 ];
+
+type cities = typeof coordinates[number]["name"];
+export type PickerOptions = "All cities" | cities;

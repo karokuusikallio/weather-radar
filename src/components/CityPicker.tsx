@@ -1,12 +1,24 @@
-import { coordinates } from "../../data/coordinates";
+import { coordinates, PickerOptions } from "../../data/coordinates";
 
-export default function CityPicker() {
+interface CityPickerProps {
+  chosenCity: PickerOptions;
+  handleChange: (city: string) => void;
+}
+
+export default function CityPicker(props: CityPickerProps) {
   return (
     <div className="dropdown">
-      <select>
-        <option>All cities</option>
+      <select
+        value={props.chosenCity}
+        onChange={({ target }) => props.handleChange(target.value)}
+      >
+        <option value={"All cities"}>All cities</option>
         {coordinates.map((city, index) => {
-          return <option key={index}>{city.name}</option>;
+          return (
+            <option key={index} value={city.name}>
+              {city.name}
+            </option>
+          );
         })}
       </select>
     </div>

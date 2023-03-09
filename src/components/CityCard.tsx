@@ -63,10 +63,9 @@ export default function CityCard({ city, lat, lon }: CityCardProps) {
                 height={60}
                 width={60}
               />
-              <span className="highlight">
-                {Math.round(currentWeatherData.temperature)}
-              </span>
-              <span>°C</span>
+              <p className="highlight">
+                {Math.round(currentWeatherData.temperature)}°C
+              </p>
             </div>
             <div>
               <p>Wind: {Math.round(currentWeatherData.wind * 10) / 10}m/s</p>
@@ -87,5 +86,5 @@ export default function CityCard({ city, lat, lon }: CityCardProps) {
     );
   }
 
-  return <p>Loading...</p>;
+  return <p>No weather data.</p>;
 }

@@ -21,14 +21,12 @@ export default function ForecastCard({ weatherData }: ForecastCardProps) {
         <Image
           src={`https://openweathermap.org/img/wn/${weatherData.icon}@2x.png`}
           alt="weather icon"
-          height={60}
-          width={60}
+          height={30}
+          width={30}
+          style={{ margin: "0.2rem 0" }}
         />
-        <p>
-          <span className="highlight">
-            {Math.round(weatherData.temperature)}
-          </span>
-          <span>°C</span>
+        <p className="highlightForecast">
+          {Math.round(weatherData.temperature)}°C
         </p>
       </div>
       <div className="infoOnBlue smallInfo">

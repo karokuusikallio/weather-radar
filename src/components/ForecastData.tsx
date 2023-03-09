@@ -21,5 +21,5 @@ export default function ForecastData({ lat, lon }: ForecastDataProps) {
     );
   }
 
-  return <p>Loading...</p>;
+  return <p>No forecast data.</p>;
 }

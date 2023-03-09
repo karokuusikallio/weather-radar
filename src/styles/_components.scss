@@ -11,10 +11,15 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 
   select {
+    width: 100%;
+    max-width: 50rem;
     margin: $marM;
     padding: $padM;
+    border: $mainBorder;
+    border-radius: $mainRadius;
   }
 }
 
@@ -24,14 +29,15 @@ header {
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 28rem;
+  max-width: 24rem;
 
   .cityCardBlock {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     background: white;
-    box-shadow: $mainShadow;
+    border: $mainBorder;
+    border-radius: $mainRadius;
     padding: $padM;
     z-index: 1000;
   }
@@ -68,6 +74,8 @@ header {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  border: $mainBorder;
+  border-radius: $mainRadius;
 }
 
 .infoOnWhite {
@@ -75,7 +83,6 @@ header {
   flex-direction: column;
   justify-content: space-between;
   background: white;
-  box-shadow: $mainShadow;
   padding: $padS;
   text-align: center;
 }
@@ -85,7 +92,6 @@ header {
   flex-direction: column;
   justify-content: space-between;
   background: $blueBg;
-  box-shadow: $mainShadow;
   padding: $padS;
   text-align: center;
 }

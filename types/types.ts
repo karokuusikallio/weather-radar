@@ -7,3 +7,11 @@ export interface WeatherData {
   precipitation: number | null;
   icon: string;
 }
+
+export enum PickerOptions {
+  Tampere = "Tampere",
+  Espoo = "Espoo",
+  Jyväskylä = "Jyväskylä",
+  Kuopio = "Kuopio",
+  All = "All Cities",
+}

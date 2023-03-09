@@ -112,6 +112,10 @@ $blueBg: #e5f6fd;
 $black: #262626;
 $grey: #70757a;
 
+//Borders
+$mainBorder: 1px solid #d0d7de;
+$mainRadius: 0.2rem;
+
 // Fonts
 body {
   font-family: Arial, sans-serif;
@@ -150,6 +154,11 @@ p {
 
 .highlight {
   font-size: 26px;
+  color: $black;
+}
+
+.highlightForecast {
+  font-size: 15px;
   color: $black;
 }
 
