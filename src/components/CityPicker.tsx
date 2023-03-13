@@ -1,8 +1,9 @@
 import { coordinates, PickerOptions } from "../../data/coordinates";
+import { ChangeEvent } from "react";
 
 interface CityPickerProps {
   chosenCity: PickerOptions;
-  handleChange: (city: string) => void;
+  onSelectionChange: (event: ChangeEvent<HTMLSelectElement>) => void;
 }
 
 export default function CityPicker(props: CityPickerProps) {
@@ -10,7 +11,7 @@ export default function CityPicker(props: CityPickerProps) {
     <div className="dropdown">
       <select
         value={props.chosenCity}
-        onChange={({ target }) => props.handleChange(target.value)}
+        onChange={props.onSelectionChange}
         id="cityPicker"
       >
         <option value={"All cities"}>All cities</option>

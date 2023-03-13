@@ -2,7 +2,7 @@ import useCurrentWeather from "../../hooks/useCurrentWeather";
 import Image from "next/image";
 
 import ForecastData from "./ForecastData";
-import { LoadingStates, WeatherData } from "../../types/types";
+import { LoadingStates } from "../../types/types";
 import { useEffect } from "react";
 
 interface CityCardProps {
@@ -12,34 +12,34 @@ interface CityCardProps {
   handleLoading: (loading: LoadingStates) => void;
 }
 
+const monthNames = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
 export default function CityCard({
   city,
   lat,
   lon,
   handleLoading,
 }: CityCardProps) {
-  const [currentWeatherData, loading]: [WeatherData | null, LoadingStates] =
-    useCurrentWeather(lat, lon);
+  const [currentWeatherData, loading] = useCurrentWeather(lat, lon);
 
   useEffect(() => {
     handleLoading(loading);
   }, [loading, handleLoading]);
 
   if (loading === LoadingStates.finished && currentWeatherData) {
-    const monthNames = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
     let month = monthNames[new Date(currentWeatherData.time * 1000).getMonth()];
     const day = new Date(currentWeatherData.time * 1000).getDate();
 

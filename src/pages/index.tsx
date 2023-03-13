@@ -1,12 +1,16 @@
 import CityCard from "@/components/CityCard";
 import CityPicker from "@/components/CityPicker";
 import { coordinates, PickerOptions } from "../../data/coordinates";
-import { useState } from "react";
+import { useState, ChangeEvent } from "react";
 import { LoadingStates } from "../../types/types";
 
 export default function Home() {
   const [chosenCity, setChosenCity] = useState<PickerOptions>("All cities");
   const [loading, setLoading] = useState<LoadingStates>(LoadingStates.idle);
+
+  const onSelectionChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    setChosenCity(event.target.value);
+  };
 
   if (loading === LoadingStates.loading) {
     return <p>Loading...</p>;
@@ -16,7 +20,10 @@ export default function Home() {
     return (
       <>
         <main>
-          <CityPicker handleChange={setChosenCity} chosenCity={chosenCity} />
+          <CityPicker
+            onSelectionChange={onSelectionChange}
+            chosenCity={chosenCity}
+          />
           <div className="cityCardView">
             {coordinates.map((city, index) => (
               <CityCard
@@ -39,7 +46,10 @@ export default function Home() {
     return (
       <>
         <main>
-          <CityPicker handleChange={setChosenCity} chosenCity={chosenCity} />
+          <CityPicker
+            onSelectionChange={onSelectionChange}
+            chosenCity={chosenCity}
+          />
           <div className="cityCardView">
             <CityCard
               city={cityToView.name}

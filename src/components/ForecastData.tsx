@@ -1,6 +1,4 @@
 import ForecastCard from "./ForecastCard";
-
-import { WeatherData } from "../../types/types";
 import useForecast from "../../hooks/useForecast";
 
 interface ForecastDataProps {
@@ -9,7 +7,7 @@ interface ForecastDataProps {
 }
 
 export default function ForecastData({ lat, lon }: ForecastDataProps) {
-  const forecastData: WeatherData[] | null = useForecast(lat, lon);
+  const forecastData = useForecast(lat, lon);
 
   if (forecastData) {
     return (

@@ -18,13 +18,13 @@ export default function useForecast(
 
         let forecastArray: WeatherData[] = [];
 
-        data.list.map((forecast: any) => {
+        for (const forecast of data.list) {
           const isSnowing =
             forecast.hasOwnProperty("snow") &&
             forecast.snow.hasOwnProperty("3h");
           const isRaining =
             forecast.hasOwnProperty("rain") &&
-            forecast.snow.hasOwnProperty("3h");
+            forecast.rain.hasOwnProperty("3h");
 
           const precipitation = isSnowing
             ? forecast.snow["3h"]
@@ -43,7 +43,7 @@ export default function useForecast(
           };
 
           forecastArray.push(weatherObject);
-        });
+        }
 
         setForecastData(forecastArray);
       } catch (error) {
