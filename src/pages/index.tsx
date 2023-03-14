@@ -1,8 +1,8 @@
 import CityCard from "@/components/CityCard";
 import CityPicker from "@/components/CityPicker";
-import { coordinates, PickerOptions } from "../../data/coordinates";
+import { coordinates, PickerOptions } from "../data/coordinates";
 import { useState, ChangeEvent } from "react";
-import { LoadingStates } from "../../types/types";
+import { LoadingStates } from "../types/types";
 
 export default function Home() {
   const [chosenCity, setChosenCity] = useState<PickerOptions>("All cities");

@@ -1,5 +1,5 @@
 import ForecastCard from "./ForecastCard";
-import useForecast from "../../hooks/useForecast";
+import useForecast from "../hooks/useForecast";
 
 interface ForecastDataProps {
   lat: number;

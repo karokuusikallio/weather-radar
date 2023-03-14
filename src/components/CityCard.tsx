@@ -1,8 +1,8 @@
-import useCurrentWeather from "../../hooks/useCurrentWeather";
+import useCurrentWeather from "../hooks/useCurrentWeather";
 import Image from "next/image";
 
 import ForecastData from "./ForecastData";
-import { LoadingStates } from "../../types/types";
+import { LoadingStates } from "../types/types";
 import { useEffect } from "react";
 
 interface CityCardProps {

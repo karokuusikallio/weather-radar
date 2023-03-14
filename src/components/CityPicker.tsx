@@ -1,4 +1,4 @@
-import { coordinates, PickerOptions } from "../../data/coordinates";
+import { coordinates, PickerOptions } from "../data/coordinates";
 import { ChangeEvent } from "react";
 
 interface CityPickerProps {
